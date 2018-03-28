@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "uuid": "^3.2.1"
+  }
+}

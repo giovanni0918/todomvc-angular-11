@@ -1,9 +1,17 @@
-# todomvc-angular-5
-A To-Do application built using Angular 5.x
+# todomvc-angular-8
+A To-Do application built using Angular 8.x 
 
-## Usage
+## Installation
+1. Change into workspace dir  
+  `cd ~/Projects` 
+2. Clone repository  
+  `git clone https://github.com/giovanni0918/todomvc-angular-8.git` 
+2. Navigate to project dir  
+  `cd todomvc-angular-8` 
+
+## Usage 
 1. Install dependencies  
-  `yarn install`
+  `cd ./TodosClient && npm install`
 
 2. Serve locally  
   `ng serve`

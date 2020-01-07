@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Todo } from './todo';
 import * as uuidv4 from 'uuid/v4';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TodosService {
 
   todos: Todo[];
@@ -47,5 +49,5 @@ export class TodosService {
   public deleteTodo(index: number): void {
     this.todos.splice(index, 1);
   }
-
+  
 }

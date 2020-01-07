@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { TodosService } from './todos.service';
-import { Todo } from './todo';
-import * as uuidv4 from 'uuid/v4';
+import { Component, OnInit } from "@angular/core";
+import { TodosService } from "./todos.service";
+import { Todo } from "./todo";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-todos',
-  templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.css'],
-  providers: [TodosService]
+  selector: "app-todos",
+  templateUrl: "./todos.component.html",
+  styleUrls: ["./todos.component.css"]
 })
 export class TodosComponent implements OnInit {
-
   newTodo: Todo;
-  constructor(private todosService: TodosService) { }
+  TodoText = new FormControl("");
+  constructor(private todosService: TodosService) {}
 
   ngOnInit() {
     this.newTodo = this.todosService.newTodo();
+    this.TodoText = new FormControl("", [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(255)
+    ]);
   }
 
   get todos() {
@@ -26,9 +30,14 @@ export class TodosComponent implements OnInit {
     return this.todosService.getCompleteTodos();
   }
 
-  addTodo() {
-    this.todosService.addTodo(this.newTodo);
-    this.newTodo = this.todosService.newTodo();
+  addTodo() {    
+    if (this.TodoText.value.trim().length <= 2) {
+      return;
+    } else {
+      this.newTodo.task = this.TodoText.value.trim();
+      this.todosService.addTodo(this.newTodo);
+      this.TodoText.setValue("");
+      this.newTodo = this.todosService.newTodo(); 
+    }    
   }
-
 }

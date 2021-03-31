@@ -3,10 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { TodosService } from './todos.service';
 
 describe('TodosService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: TodosService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(TodosService);
+  });
 
   it('should be created', () => {
-    const service: TodosService = TestBed.get(TodosService);
     expect(service).toBeTruthy();
   });
 });

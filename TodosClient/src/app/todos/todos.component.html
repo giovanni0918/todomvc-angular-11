@@ -1,73 +1,73 @@
 <div class="container d-flex flex-column justify-content-center align-items-center">
 
-    <form (ngSubmit)="addTodo(f)" class="w-100">
-        <div class="row form-group">
-            <div class="col-9">
-                <input type="text" class="form-control" name="TodoText" [formControl]="TodoText"
-            placeholder="thing to do..." matInput /> &nbsp;
-            </div>
-            <div class="col-3">
-                <button type="submit" mat-raised-button color="accent">Add Todo</button>
-            </div>
-        </div>       
-        <div *ngIf="!TodoText.pristine && TodoText.errors && TodoText.errors.minlength" class="alert alert-danger"
-            role="alert">
-            The todo text must be at least {{TodoText.errors.minlength.requiredLength}} characters long.
-        </div>
+  <form (ngSubmit)="addTodo()" class="w-100">
+      <div class="row form-group">
+          <div class="col-9">
+              <input type="text" class="form-control" name="TodoText" [formControl]="TodoText"
+          placeholder="thing to do..." matInput /> &nbsp;
+          </div>
+          <div class="col-3">
+              <button type="submit" mat-raised-button color="accent">Add Todo</button>
+          </div>
+      </div>
+      <div *ngIf="!TodoText.pristine && TodoText.errors && TodoText.errors.minlength" class="alert alert-danger"
+          role="alert">
+          The todo text must be at least {{TodoText.errors.minlength.requiredLength}} characters long.
+      </div>
 
-        <div *ngIf="!TodoText.pristine && TodoText.errors && TodoText.errors.maxlength" class="alert alert-danger"
-            role="alert">
-            The todo text must not exceed {{TodoText.errors.maxlength.requiredLength}} characters.
-        </div>
-    </form>    
+      <div *ngIf="!TodoText.pristine && TodoText.errors && TodoText.errors.maxlength" class="alert alert-danger"
+          role="alert">
+          The todo text must not exceed {{TodoText.errors.maxlength.requiredLength}} characters.
+      </div>
+  </form>
 
-    <hr />
+  <hr />
 
-    <div class="w-100" *ngIf="todos.length > 0">
-        <h4>To do</h4>
-        <mat-list>
-            <mat-list-item *ngFor="let todo of todos; let i = index;">
-                <label class="row w-100">
+  <div class="w-100" *ngIf="todos.length > 0">
+      <h4>To do</h4>
+      <mat-list>
+          <mat-list-item *ngFor="let todo of todos; let i = index;">
+              <label class="row w-100">
 
-                    <div class="col-8">
-                        <mat-checkbox [checked]="todo.complete" (change)="todo.complete = !todo.complete">
-                        </mat-checkbox>
-                        <span class="ml-2">{{todo.task}}</span>
-                    </div>
+                  <div class="col-8">
+                      <mat-checkbox [checked]="todo.complete" (change)="toggleComplete(todo)">
+                      </mat-checkbox>
+                      <span class="ml-2">{{todo.task}}</span>
+                  </div>
 
-                    <div class="col-4">
-                        {{todo.createDate | date:'medium'}}
-                    </div>
+                  <div class="col-4">
+                      {{todo.createDate | date:'medium'}}
+                  </div>
 
-                </label>
-            </mat-list-item>
-        </mat-list>
+              </label>
+          </mat-list-item>
+      </mat-list>
 
-        <hr />
-    </div>
+      <hr />
+  </div>
 
-    <div class="w-100" *ngIf="completeTodos.length > 0">
-        <h4>Complete</h4>
-        <mat-list>
-            <mat-list-item *ngFor="let todo of completeTodos; let i = index;">
-                <label class="row w-100">
+  <div class="w-100" *ngIf="completeTodos.length > 0">
+      <h4>Complete</h4>
+      <mat-list>
+          <mat-list-item *ngFor="let todo of completeTodos; let i = index;">
+              <label class="row w-100">
 
-                    <div class="col-8 d-flex flex-row">
-                        <mat-checkbox [checked]="todo.complete" (change)="todo.complete = !todo.complete">
-                        </mat-checkbox>
-                        &nbsp;
-                        <span>{{todo.task}}</span>
-                    </div>
+                  <div class="col-8 d-flex flex-row">
+                      <mat-checkbox [checked]="todo.complete" (change)="toggleComplete(todo)">
+                      </mat-checkbox>
+                      &nbsp;
+                      <span>{{todo.task}}</span>
+                  </div>
 
-                    <div class="col-4 d-flex flex-row">
-                        {{todo.createDate | date:'medium'}}
-                    </div>
+                  <div class="col-4 d-flex flex-row">
+                      {{todo.createDate | date:'medium'}}
+                  </div>
 
-                </label>
-            </mat-list-item>
-        </mat-list>
+              </label>
+          </mat-list-item>
+      </mat-list>
 
-        <hr />
-    </div>
+      <hr />
+  </div>
 
 </div>
